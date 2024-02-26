@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-require('dotenv').config()
-
-const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost:27017/paytm";
+const { DATABASE_URL } = require("./config");
 
 mongoose.connect(DATABASE_URL);
 
