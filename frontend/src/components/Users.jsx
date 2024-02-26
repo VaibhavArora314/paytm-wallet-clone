@@ -6,13 +6,13 @@ import axios from "axios"
 const Users = () => {
     const [users, setUsers] = useState([]);
     const [filter, setFilter] = useState("");
-    const token = localStorage.getItem("token");
+    let timeoutValue = null;
 
     const getUsers = async () => {
         try {
             const response = await await axios.get("/user/bulk?filter=" + filter, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             });
 
@@ -32,7 +32,11 @@ const Users = () => {
         </div>
         <div className="my-2">
             <input onChange={(e) => {
-                setFilter(e.target.value)
+                if (timeoutValue) clearTimeout(timeoutValue);
+
+                timeoutValue = setTimeout(() => {
+                    setFilter(e.target.value)
+                },500);
             }} type="text" placeholder="Search users first or last name..." className="w-full px-2 py-1 border rounded border-slate-200"></input>
         </div>
         <div>

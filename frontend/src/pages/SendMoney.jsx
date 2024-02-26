@@ -27,7 +27,7 @@ const SendMoney = () => {
         }
 
         try {
-            await axios.post("/account/transfer", {
+            const response = await axios.post("/account/transfer", {
                 to: id,
                 amount
             }, {
@@ -36,7 +36,7 @@ const SendMoney = () => {
                 }
             });
 
-            navigate('/dashboard');
+            navigate('/transaction/'+response.data.transactionId);
         } catch (error) {
             setError(error.response.data.message);
         }
