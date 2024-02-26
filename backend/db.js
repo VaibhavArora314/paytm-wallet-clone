@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 require('dotenv').config()
 
-mongoose.connect(process.env.DATABASE_URL);
+const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost:27017/paytm";
+
+mongoose.connect(DATABASE_URL);
 
 const userSchema = mongoose.Schema({
     username: {

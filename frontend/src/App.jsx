@@ -8,7 +8,8 @@ import NonAuthenticatedRoute from "./components/NonAuthenticatedRoute";
 import axios from "axios";
 import TransactionDetail from "./pages/TransactionDetail";
 
-axios.defaults.baseURL = import.meta.env.VITE_BACKEND_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL || "http://localhost:3000/api/v1";
+axios.defaults.baseURL = BASE_URL;
 
 function App() {
   return (
